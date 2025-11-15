@@ -17,7 +17,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const PORT = process.env.PORT || 4000;
@@ -25,7 +30,7 @@ const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
 // Auth0 config
 const config = {
-  authRequired: false, //Didnt work any API when this True because not impelemented yet TODO:(put true after it implemet)
+  authRequired: false,
   auth0Logout: true,
   secret: process.env.SESSION_SECRET,
   baseURL: process.env.AUTH0_BASE_URL || `http://localhost:${PORT}`,
@@ -100,8 +105,8 @@ app.get("/", (req, res) => {
 });
 
 
-//(working without requiresAuth() because it not implemeted yet) 
-app.get("/api/weather", /*requiresAuth(),*/  async (req, res) => {
+//(working)
+app.get("/api/weather", requiresAuth(),  async (req, res) => {
   try {
     const promises = cityIds.map((id) =>
 
