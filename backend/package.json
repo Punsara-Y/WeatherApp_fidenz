@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-oauth2-jwt-bearer": "^1.7.1",
     "express-openid-connect": "^2.19.2",
     "node-cache": "^5.1.2",
     "node-fetch": "^3.3.2",
