@@ -1,192 +1,290 @@
-/* General layout */
+/* ---------- Global ---------- */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f2f5;
-  color: #333;
+  font-family: "Poppins", sans-serif;
+  background-image: url("./resources/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.header h1 {
-  font-size: 2rem;
-  color: #333;
-}
-
-.header button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.header button:hover {
-  background: #0056b3;
-}
-
-.user {
-  margin-right: 1rem;
-  font-weight: 500;
-}
-
-/* Weather Dashboard Grid */
-.weather-dashboard .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Weather Card */
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-/* Card Header */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.remove-btn {
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #888;
-  transition: color 0.2s;
-}
-
-.remove-btn:hover {
-  color: #e74c3c;
-}
-
-/* Temperature Section */
-.temp-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.temp-icon {
-  font-size: 2.5rem;
-  margin-right: 1rem;
-}
-
-.temp-details {
+.header .user-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 25px;
   display: flex;
   flex-direction: column;
 }
 
-.current-temp {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.desc {
-  text-transform: capitalize;
-  font-size: 1rem;
-  color: #555;
-}
-
-.min-max {
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* Detailed Info Section */
-.details-section {
-  margin-top: 1rem;
-}
-
-.datetime {
-  font-size: 0.9rem;
+.user{
+  color: black;
+  font-size: 18px;
   font-weight: 500;
-  color: #666;
-  margin-bottom: 0.5rem;
+  text-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+  margin-bottom: 6px;
 }
 
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
+.logoutbtn {
+  background: rgba(1, 13, 36, 0.15);
+  border: 1px solid rgba(16, 13, 173, 0.25);
+  backdrop-filter: blur(6px);
+  color: rgb(0, 0, 0);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
-.detail-item {
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
+.logoutbtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.32);
+}
+
+.logoutbtn:active {
+  transform: scale(0.96);
+}
+
+/* ---------- Container ---------- */
+.weather-container {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 50px;
+  font-family: 'Trebuchet MS', sans-serif;
+  opacity: 0.95;
+  margin-bottom: 45px;
+  color: rgb(12, 12, 37);
+}
+
+/* ---------- Responsive Grid ---------- */
+.weather-grid {
+  width: 85%; /* increased width */
+  margin: 0 auto;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* wider cards */
+}
+
+/* ---------- Weather Cards ---------- */
+.weather-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: white;
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 6px 22px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.weather-card:hover {
+  transform: translateY(-6px);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  z-index: 10; /* make sure it's above the card content */
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
-.detail-item .label {
+.close-btn:hover {
+  background: rgba(255,0,0,0.7);
+  transform: scale(1.1);
+}
+
+/* ---------- Card Top with Full Background Image ---------- */
+.card-top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  min-height: 220px; /* increased height */
+  border-radius: 20px 20px 0 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.card-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px 20px 0 0;
+  z-index: 0;
+}
+
+.card-top-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding-left: 50px;
+}
+
+.card-top-content h1{
+  font-size: 40px;
+
+}
+
+.card-top-left {
+  text-align: left;
+}
+
+.card-top-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.temp {
+  font-size: 50px;
   font-weight: 600;
-  margin-right: 0.3rem;
+  padding-right: 50px;
+  padding-top: 40px;
 }
 
-/* Color classes based on weather */
-.card-blue {
-  border-top: 4px solid #3498db;
+.tempminmax {
+  font-size: 16px;
 }
 
-.card-orange {
-  border-top: 4px solid #e67e22;
+.timestamp {
+  font-size: 18px;
+  opacity: 0.85;
 }
 
-.card-red {
-  border-top: 4px solid #e74c3c;
+.condition {
+  font-size: 18px;
 }
 
-.card-default {
-  border-top: 4px solid #95a5a6;
+/* ---------- Card Bottom with Separators ---------- */
+.card-bottom {
+  background-color: rgb(59, 59, 59);
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 20px;
+  text-align: left;
+  gap: 20px; /* space between sections */
 }
 
-/* Loading/Error Centered */
-.center {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #555;
+.card-bottom > div {
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  padding-right: 15px;
+  flex: 1; /* evenly space sections */
 }
 
-.error {
-  color: #e74c3c;
-  font-weight: 600;
+.card-bottom > div:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
-/* Footer */
+.card-bottom p {
+  margin: 4px 0;
+}
+
+.card-bottom .sunsetsunrice {
+  margin-top: 10px;
+}
+
+.wind-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.wind-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.condition-icon {
+  width: 30px; 
+  height: 30px;
+  margin-right: 15px; 
+  vertical-align: middle;
+}
+
 .footer {
   text-align: center;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #888;
+  padding: 20px;
+  font-size: 16px;
+  color: white;
+  background: rgba(0,0,0,0.25);
+  position: relative;
+
+}
+
+/* ---------- Mobile Responsiveness ---------- */
+@media (max-width: 1024px) {
+  .weather-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-grid {
+    width: 95%;
+  }
+  .card-top {
+    min-height: 180px;
+  }
+  .temp {
+    font-size: 36px;
+  }
+  .card-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card-bottom > div {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+  }
+  .card-bottom > div:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-top {
+    min-height: 140px;
+  }
+  .app-title {
+    font-size: 32px;
+  }
+  .temp {
+    font-size: 28px;
+  }
+  .weather-grid {
+    grid-template-columns: 1fr;
+  }
 }
